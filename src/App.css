@@ -1,83 +1,236 @@
 .container {
   font-family: 'Arial', sans-serif;
-  background-color: #e5f5e8;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 50px;
-  background-color: #99e1a1;
-}
-
-header button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #4caf50;
-  color: white;
-  cursor: pointer;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 50px;
-  background-color: #99e1a1;
-}
-
-nav button {
-  padding: 10px 20px;
-  background-color: #e5f5e8;
-  border: 2px solid #4caf50;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-nav button:hover {
-  background-color: #4caf50;
-  color: white;
-}
-
-.main-content {
-  text-align: center;
-  padding: 20px;
-}
-
-.main-content img {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px 0;
-}
-
-.circle-section {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
-}
-
-.circle-section div {
-  text-align: center;
-}
-
-.circle-section img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #99e1a1;
-}
-.contenedor {
-  display: flex;
-  align-items: center;  /* Alinea verticalmente los elementos al centro */
 }
 
 .logo {
-  margin-right: 10px;   /* Añade un pequeño espacio entre el logo y el texto */
+  margin-right: 10px;
+}
+
+.nav button:hover {
+  color: #ffffff;
+  background-color: #4caf50;
+}
+
+footer {
+  font-size: 0.9rem;
+}
+
+
+/* Estilos.css */
+
+/* Logo y barra de navegación */
+.logo {
+  margin-right: 20px;
+}
+
+/* Contenedor principal de la barra de navegación */
+header {
+  background-color: white;
+  padding: 15px;
+  border-radius: 19px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor principal de los elementos de la barra */
+.d-flex {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para la barra de búsqueda y desplegable */
+input, select {
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+/* Estilo para los botones */
+button {
+  background-color: transparent;
+  border: none;
+  color: gray;
+  cursor: pointer;
+}
+
+button:hover {
+  color: darkgray;
+  text-decoration: none;
+}
+
+/* Estilo para los botones de navegación en la parte inferior */
+nav button {
+  margin: 0 10px;
+}
+
+/* Iconos */
+button i {
+  margin-right: 10px;
+}
+
+
+/* Estilos para la barra de navegación */
+
+/* Contenedor principal de la barra de navegación */
+header {
+  background-color: #f0f4f8;  /* Color de fondo suave */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;  /* Espacio entre la barra y el contenido siguiente */
+}
+
+/* Logo y nombre del sitio */
+.logo {
+  margin-right: 20px;
+  color: #333;  /* Color oscuro para el texto */
+}
+
+/* Estilo para los botones */
+button {
+  background-color: transparent;
+  border: none;
+  color: #2d9cdb;  /* Color azul para los botones */
+  cursor: pointer;
+  margin: 0 10px;  /* Espacio entre botones */
+}
+
+button:hover {
+  color: #1c6f9b;  /* Color azul oscuro al pasar el mouse */
+}
+
+/* Iconos de los botones */
+button i {
+  margin-right: 5px;
+}
+/* Estilos para la barra de navegación */
+
+/* Contenedor principal de la barra de navegación */
+header {
+    background-color: #f0f4f8;  /* Color de fondo suave */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;  /* Espacio entre la barra y el contenido siguiente */
+}
+
+/* Logo y nombre del sitio */
+.logo {
+    margin-right: 20px;
+    color: #333;  /* Color oscuro para el texto */
+}
+
+/* Estilo para los botones */
+button {
+    background-color: transparent;
+    border: none;
+    color: #2d9cdb;  /* Color azul para los botones */
+    cursor: pointer;
+    margin: 0 10px;  /* Espacio entre botones */
+}
+
+button:hover {
+    color: #1c6f9b;  /* Color azul oscuro al pasar el mouse */
+}
+
+/* Iconos de los botones */
+button i {
+    margin-right: 5px;
+}
+
+
+/* Estilos para la barra de navegación */
+
+/* Contenedor principal de la barra de navegación */
+header {
+  background-color: #e8f9e5;  /* Color verde claro */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;  /* Espacio entre la barra y el contenido siguiente */
+}
+
+/* Logo y nombre del sitio */
+.logo {
+  margin-right: 20px;
+  color: #333;  /* Color oscuro para el texto */
+}
+
+/* Estilo para los botones */
+button {
+  background-color: transparent;
+  border: none;
+  color: #2d9cdb;  /* Color azul para los botones */
+  cursor: pointer;
+  margin: 0 10px;  /* Espacio entre botones */
+}
+
+button:hover {
+  color: #1c6f9b;  /* Color azul oscuro al pasar el mouse */
+}
+
+/* Iconos de los botones */
+button i {
+  margin-right: 5px;
+}
+
+
+/* Estilos generales para los botones */
+button {
+  padding: 10px 20px; /* Espacio interior del botón */
+  margin: 0 5px;     /* Espacio entre botones */
+  border: none;
+  border-radius: 15px; /* Bordes redondeados */
+  background-color: #2d9cdb;  /* Color de fondo */
+  color: white;  /* Color del texto */
+  cursor: pointer;
+  font-size: 16px; /* Tamaño del texto */
+  transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+}
+
+/* Cambio de color al pasar el mouse por encima */
+button:hover {
+  background-color: #1c6f9b; /* Color más oscuro */
+}
+
+/* Estilo específico para el botón "CONTACT" */
+button.contact {
+  background-color: white;
+  color: #2d9cdb;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+button.contact:hover {
+  background-color: #f3f3f3;
+  color: #1c6f9b;
+}
+
+
+/* Estilos generales para los botones */
+button {
+  padding: 10px 20px; /* Espacio interior del botón */
+  margin: 0 5px;     /* Espacio entre botones */
+  border: none;
+  border-radius: 50px; /* Esquinas completamente redondas */
+  background-color: #a8dbd1;  /* Color de fondo verde suave */
+  color: white;  /* Color del texto */
+  cursor: pointer;
+  font-size: 16px; /* Tamaño del texto */
+  transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+}
+
+/* Cambio de color al pasar el mouse por encima */
+button:hover {
+  background-color: #198754; /* Color verde más oscuro para el hover */
+}
+
+/* Estilo específico para el botón destacado (similar a "CONTACT" pero adaptado a los colores de tu página) */
+button.destacado {
+  background-color: white;
+  color: #198754;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+button.destacado:hover {
+  background-color: #f3f3f3;
+  color: #198754;
 }
