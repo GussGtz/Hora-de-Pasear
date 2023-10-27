@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
+import {Link} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,7 +28,10 @@ function Home() {
       <nav className="d-flex justify-content-around mb-4">
         <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
         <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
+        <Link to={'/lugares'}>
         <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
+        </Link>
+        
         <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
       </nav>
 
