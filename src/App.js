@@ -8,6 +8,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Lugares from './page/lugares';
 import Home from './components/home'; // Importa el componente Home
 
+
+
+
 function App() {
     const router = createBrowserRouter([
         {

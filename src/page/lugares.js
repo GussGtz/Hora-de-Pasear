@@ -36,33 +36,23 @@ function Lugares(){
     </div>
     <div className="row">
         <div className="col-xs-12 col-sm-4">
+
+
   <div
     className="card"
     style={{
       background:
-        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://transfercancun-airport.com/es/blog/wp-content/uploads/2020/09/playa-delfines-cancun-mexico.jpg")`
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://i0.wp.com/www.micancun.org/wp-content/uploads/2021/04/Parque-de-Las-Palapas.jpg?resize=735%2C490&ssl=1")`
     }}
   >
     <div className="card-description">
-      <h2>Nombre del lugar</h2>
+      <h2>  Parque las palapas.   </h2>
     </div>
     <button type="button" class="btn btn-light"  data-bs-toggle="modal" data-bs-target="#exampleModal" style={{marginTop:'10px', boxShadow:'-moz-initial'}}>ubicacion</button>
   </div>
   
-</div>
-<div className="col-xs-12 col-sm-4">
-  <div
-    className="card"
-    style={{
-      background:
-        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://transfercancun-airport.com/es/blog/wp-content/uploads/2020/09/playa-delfines-cancun-mexico.jpg")`
-    }}
-  >
-    <div className="card-description">
-      <h2>Nombre del lugar</h2>
-    </div>
-    <button type="button" class="btn btn-light"style={{marginTop:'10px', boxShadow:'-moz-initial'}}  data-bs-toggle="modal" data-bs-target="#exampleModal">ubicacion</button>
-  </div>
+
+
   
 </div>
 <div className="col-xs-12 col-sm-4">
@@ -70,42 +60,77 @@ function Lugares(){
     className="card"
     style={{
       background:
-        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://transfercancun-airport.com/es/blog/wp-content/uploads/2020/09/playa-delfines-cancun-mexico.jpg")`
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://topadventure.com/__export/1664561757364/sites/laverdad/img/2022/09/30/plaza_las_americas_portada.jpg_1092245830.jpg")`
     }}
   >
     <div className="card-description">
-      <h2>Nombre del lugar</h2>
+      <h2> Plaza las americas.</h2>
     </div>
     <button type="button" class="btn btn-light"style={{marginTop:'10px', boxShadow:'-moz-initial'}}  data-bs-toggle="modal" data-bs-target="#exampleModal">ubicacion</button>
   </div>
   
 </div>
 <div className="col-xs-12 col-sm-4">
+
+
+
+  
   <div
     className="card"
     style={{
       background:
-        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://transfercancun-airport.com/es/blog/wp-content/uploads/2020/09/playa-delfines-cancun-mexico.jpg")`
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://oasisblog.nyc3.cdn.digitaloceanspaces.com/2021/01/cancun-spot.jpg")`
     }}
   >
     <div className="card-description">
-      <h2>Nombre del lugar</h2>
+      <h2>   El mirador.   </h2>
     </div>
     <button type="button" class="btn btn-light"style={{marginTop:'10px', boxShadow:'-moz-initial'}}  data-bs-toggle="modal" data-bs-target="#exampleModal">ubicacion</button>
   </div>
   
 </div>
+
 <div className="col-xs-12 col-sm-4">
+
+
+  
   <div
     className="card"
     style={{
       background:
-        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://transfercancun-airport.com/es/blog/wp-content/uploads/2020/09/playa-delfines-cancun-mexico.jpg")`
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://pbs.twimg.com/media/E-xoX7aXIBAue2T.jpg")`
     }}
   >
     <div className="card-description">
-      <h2>Nombre del lugar</h2>
+      <h2>   Torre excaret.  </h2>
     </div>
+    <button type="button" class="btn btn-light"style={{marginTop:'10px', boxShadow:'-moz-initial'}}  data-bs-toggle="modal" data-bs-target="#exampleModal">ubicacion</button>
+  </div>
+  
+
+
+</div>
+<div className="col-xs-12 col-sm-4">
+
+
+
+
+  
+  <div
+    className="card"
+    style={{
+      background:
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url("https://diariocambio22.mx/wp-content/uploads/2023/05/cnov01-02-8.jpg")`
+    }}
+  >
+    <div className="card-description">
+      <h2>   Centro de convenciones de cancun </h2>
+    </div>
+
+
+
+
+    
     <button type="button" class="btn btn-light"style={{marginTop:'10px', boxShadow:'-moz-initial'}}  data-bs-toggle="modal" data-bs-target="#exampleModal">ubicacion</button>
   </div>
   
@@ -114,6 +139,11 @@ function Lugares(){
   </div>
  
 </section>
+
+
+
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
