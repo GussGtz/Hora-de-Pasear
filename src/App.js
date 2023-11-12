@@ -6,7 +6,7 @@ import './css/lugares.css'
 import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Lugares from './page/lugares';
-import Home from './components/home'; // Importa el componente Home
+import Home from './components/home'; // Importa el componente Homes
 
 
 
