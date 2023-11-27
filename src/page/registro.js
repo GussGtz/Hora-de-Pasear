@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 
-function Login(){
+function Registro(){
     return(
         <>
         <div className="fondoimg_login">
@@ -18,7 +18,7 @@ function Login(){
             <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
               <div className="container-fluid">
                 <div className="row">
-                  <h2 style={{marginTop:20, fontWeight:'bold'}}>Inicio de sesión  </h2>
+                  <h2 style={{marginTop:20, fontWeight:'bold'}}>Registrate</h2>
                 </div>
                 <div className="row">
                   <form control="" className="form-group">
@@ -42,16 +42,11 @@ function Login(){
                       />
                     </div>
                     <div className="row">
-                      <Link to={'/'}>
+                      <Link to={'/login'}>
                       <input style={{marginLeft:90}} type="submit" defaultValue="Submit" className="btn_login" />
                       </Link>
                     </div>
                   </form>
-                </div>
-                <div className="row">
-                  <p>
-                    No tienes cuenta? <Link to={'/registro'} style={{color:'#008080'}}>Registrate aquí</Link>
-                  </p>
                 </div>
               </div>
             </div>
@@ -63,4 +58,4 @@ function Login(){
     )
 }
 
-export default Login
+export default Registro

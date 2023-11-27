@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../App.css';
 import {Link} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloud, faMapMarkerAlt, faInfoCircle, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,7 +12,7 @@ function Home() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(true);                                    
   return (
     <div className="container-fluid bg-light p-3 p-md-5 rounded">
       <header className="d-flex justify-content-between align-items-center mb-4">
@@ -21,10 +20,12 @@ function Home() {
           <img className="logo mr-3" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" width="50"/>
           <h1 className="font-weight-bold">Hora De Pasear</h1>
         </div>
-        <button className="btn btn-success" onClick={handleShow}>
+        <Link to={'/login'}>
+        <button className="btn btn-success">
           <FontAwesomeIcon icon={faUser} className="mr-2" />
           Login
         </button>
+        </Link>
       </header>
 
       <nav className="d-flex justify-content-around mb-4">
@@ -67,35 +68,6 @@ function Home() {
         <img src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" width="50" />
         <p className="mt-2 mb-0">© Hora De Pasear</p>
       </footer>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton >
-          <Modal.Title>Iniciar sesión</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-          <label class="form-label">Usuario</label>
-          <input
-          type="text"
-          placeholder="Ingresa tu usuario"
-          class="form-control"
-        />
-        <label class="form-label">Contraseña</label>
-        <input
-          type="password"
-          placeholder="Ingresa tu contraseña"
-          class="form-control"
-        />
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-          <Button variant="success" onClick={handleClose}>
-            Iniciar sesión
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 }
