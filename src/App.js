@@ -10,6 +10,7 @@ import Lugares from './page/lugares';
 import Home from './components/home';
 import Login from './page/login';
 import Registro from './page/registro';
+import Informacion from './page/Informacion';
 
 
 
@@ -30,6 +31,10 @@ function App() {
     {
       path: '/registro',
       element: <Registro/>
+    },
+    {
+      path: '/informacion',
+      element: <Informacion/>
     }
   ]);
 

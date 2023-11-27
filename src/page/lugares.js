@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Link} from "react-router-dom"
 import ParqueLasPalapas from '../ApiUbicaciones/ParqueLasPalapas';
 import PlazaLasAmericas from '../ApiUbicaciones/PlazaLasAmericas';
 import ElMirador from '../ApiUbicaciones/Mirador'
@@ -35,11 +36,19 @@ function Lugares() {
         </header>
 
         <nav className="d-flex justify-content-around mb-4">
-          <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
-          <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
-          <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
-          <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
-        </nav>
+        <Link to={'/'}>
+        <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
+        </Link>
+        <Link to={'#'}>
+        <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
+        </Link>
+        <Link to={'/lugares'}>
+        <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
+        </Link>
+        <Link to={'/informacion'}>
+        <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
+        </Link>
+      </nav>
 
         <section className="wrapper-grey padded">
           <div className="container">
