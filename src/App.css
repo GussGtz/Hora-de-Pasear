@@ -245,3 +245,168 @@ button.destacado:hover {
   background: #E5E5E5;
   padding: 60px 0 30px 0;
 }
+/* Estilos generales para el fondo y la tipografía */
+.container-fluid {
+  background-color: #f8f9fa; /* Cambiar por el color de fondo adecuado */
+  color: #333; /* Cambiar por el color de texto adecuado */
+  font-family: 'Arial', sans-serif; /* Cambiar por la tipografía adecuada */
+}
+
+/* Cabecera */
+.header {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 15px;
+  width: 50px; /* Ajustar según el diseño */
+}
+
+/* Navegación */
+.nav {
+  justify-content: space-around;
+  margin-bottom: 25px;
+}
+
+.btn-outline-success {
+  color: #28a745; /* Cambiar por el color del texto de los botones */
+  border-color: #28a745; /* Cambiar por el color del borde de los botones */
+  background-color: transparent;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745; /* Cambiar por el color de fondo al pasar el mouse */
+  color: white;
+}
+
+/* Información del clima */
+.clima {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Detalles del clima como iconos y texto */
+.clima-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-circle {
+  border-radius: 50%;
+  width: 60px; /* Ajustar según el diseño */
+  height: 60px; /* Ajustar según el diseño */
+}
+
+/* Pie de página */
+.footer {
+  background-color: #28a745; /* Cambiar por el color de fondo adecuado */
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.weather-container {
+  font-family: 'Arial', sans-serif;
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 15px;
+  width: 50px;
+}
+
+.weather-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #28a745;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  background-color: #28a745;
+  border: none;
+  padding: 30px;
+  color: white;
+}
+
+.derecha {
+  margin-left: 500px; /* Ajusta este valor según tus necesidades */
+}
+
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+}
+
+.weather-details {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weather-temp {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.weather-stats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.weather-stats > div {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weather-footer {
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-logo {
+  width: 50px;
+}
+
+.fecha {
+
+  font-size: 15px;
+  padding: 20px;
+  color: #1c6f9b;
+}

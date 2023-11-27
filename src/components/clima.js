@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
-import {Link} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloud, faMapMarkerAlt, faInfoCircle, faUser } from '@fortawesome/free-solid-svg-icons';
+import '../App.css'; // Asegúrate de que App.css contiene los nuevos estilos
+
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { useNavigate } from 'react-router-dom';
 
 
 
-function Home() {
-
+const WeatherInfo = () => {
+ 
+  // usuario
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
@@ -85,24 +86,42 @@ function Home() {
   };
 
 
-
+  // fin seccion usuario
 
 
 
   const [show, setShow] = useState(false);
+  const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `https://api.weatherapi.com/v1/current.json?key=c23c137cf41d4949a6945959232611&q=Cancun&aqi=no&lang=es`;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
-    <div className="container-fluid bg-light p-3 p-md-5 rounded">
-      <header className="d-flex justify-content-between align-items-center mb-4">
-        <div className="d-flex align-items-center">
-          <img className="logo mr-3" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" width="50"/>
-          <h1 className="font-weight-bold">Hora De Pasear</h1>
-
-
-
- <div className="derecha">
+    <div className="weather-container">
+      <header className="weather-header">
+        <div className="logo-container">
+          <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo"/>
+          <h1>Hora De Pasear</h1>
+        
+        
+        <div className="derecha">
             {user && (
                 <>
                     <span>{user.displayName}</span>
@@ -117,16 +136,17 @@ function Home() {
                 </Button>
             )}
         </div>
-
-
-
+        
         
         </div>
-        
+       
+
+
+
       </header>
 
-      <nav className="d-flex justify-content-around mb-4">
-        <Link to={'/home'}>
+      <nav className="weather-nav">
+      <Link to={'/home'}>
         <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
         </Link>
 
@@ -140,57 +160,47 @@ function Home() {
         <Link to={'/home'}>
         <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
         </Link>
-      
       </nav>
 
-      <section className="text-center mb-4">
-        <h1>¡Bienvenidos a "Hora de Pasear", tu compañero de viajes definitivo!</h1>
-        <img className="img-fluid w-50 mx-auto rounded my-4" src="https://a4adc62bfbeb9287c6cc-44a9442b068bb36d5792597640a019e7.ssl.cf1.rackcdn.com/u/_destination/xpm/riviera-maya-resort-sunrise.jpg" alt=""/>
-      </section>
+      <main className="weather-info">
+        {weatherData && (
+          <div className="weather-details">
+            <div className="weather-temp">
+            <FontAwesomeIcon icon={faCloud} size="1x" />
+              <span>{weatherData.current.temp_c}°C</span>
+              <div class='fecha'>{weatherData.current.last_updated}</div>
+              <div class='fecha'>{weatherData.current.condition.text}</div>
+            </div>
+            <div className="weather-stats">
+              <div>Precipitacion: {weatherData.current.precip_mm}mm</div>
+              <div>Humedad: {weatherData.current.humidity}%</div>
+              <div>viento: {weatherData.current.wind_kph}kph</div>
+             
+              
+            </div>
+          </div>
+        )}
+      </main>
 
-      <section className="d-flex flex-column flex-md-row justify-content-around mb-4">
-        <div className="text-center">
-          <button className="btn btn-circle btn-success mb-3">
-            <FontAwesomeIcon icon={faCloud} size="2x" />
-          </button>
-          <p>CLIMA</p>
-        </div>
-        <div className="text-center">
-          <button className="btn btn-circle btn-success mb-3">
-            <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
-          </button>
-          <p>LUGARES</p>
-        </div>
-        <div className="text-center">
-          <button className="btn btn-circle btn-success mb-3">
-            <FontAwesomeIcon icon={faInfoCircle} size="2x" />
-          </button>
-          <p>Información</p>
-        </div>
-      </section>
-
-      <footer className="text-center bg-success text-white p-3">
-        <img src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" width="50" />
-        <p className="mt-2 mb-0">© Hora De Pasear</p>
+      <footer className="weather-footer">
+        <img className="footer-logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo"/>
+        <p>© Hora De Pasear</p>
       </footer>
+
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton >
+        <Modal.Header closeButton>
           <Modal.Title>Iniciar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>
-          <label class="form-label">Usuario</label>
-          <input
-          type="text"
-          placeholder="Ingresa tu usuario"
-          class="form-control"
-        />
-        <label class="form-label">Contraseña</label>
-        <input
-          type="password"
-          placeholder="Ingresa tu contraseña"
-          class="form-control"
-        />
+            <div className="form-group">
+              <label>Usuario</label>
+              <input type="text" placeholder="Ingresa tu usuario" className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Contraseña</label>
+              <input type="password" placeholder="Ingresa tu contraseña" className="form-control" />
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
@@ -204,6 +214,6 @@ function Home() {
       </Modal>
     </div>
   );
-}
+};
 
-export default Home;
+export default WeatherInfo;
