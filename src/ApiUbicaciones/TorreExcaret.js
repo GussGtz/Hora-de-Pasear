@@ -15,10 +15,10 @@ const ParqueLasPalapas = () => {
   };
 
   const locations = [
-    { name: 'TorreExcaret', lat: 21.144593, lng:-86.788140, title: 'TorreExcaret' },
+    { name: 'TorreExcaret', lat: 21.143850, lng: -86.788199, title: 'TorreExcaret' },
   ];
 
-
+ 
  
 
 
@@ -28,7 +28,7 @@ const ParqueLasPalapas = () => {
 
   useEffect(() => {
     if (map) {
-      // Porsi deseas manipular el mapa después de cargar :)
+    
     }
   }, [map]);
 

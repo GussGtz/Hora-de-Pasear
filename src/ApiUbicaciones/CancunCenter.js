@@ -29,7 +29,7 @@ const ParqueLasPalapas = () => {
 
   useEffect(() => {
     if (map) {
-      // Porsi deseas manipular el mapa después de cargar :)
+      
     }
   }, [map]);
 

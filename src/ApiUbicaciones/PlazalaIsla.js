@@ -20,8 +20,6 @@ const ParqueLasPalapas = () => {
 
  
 
-
-
   const onLoad = (map) => {
     setMap(map);
   };
