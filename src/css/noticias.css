@@ -1,0 +1,340 @@
+.card_noticia{
+    border: solid;
+    border:1;
+    border-color: rgba(192, 192, 192, 0);
+    border-radius: 10px;
+    width: 80%;
+    height: 60%;
+    margin-left: 130px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.shadow-drop-2-center {
+	-webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes shadow-drop-2-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    }
+  }
+  @keyframes shadow-drop-2-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  .h1 {
+    font-size: 30px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: -1px;
+    transition: 700ms ease;
+    font-variation-settings: "wght" 311;
+    margin-bottom: 0.8rem;
+    color: rgb(0, 0, 0);
+    outline: none;
+    text-align: center;
+  }
+  
+  .h1:hover {
+    font-variation-settings: "wght" 582; 
+    letter-spacing: 1px;
+  }
+.img_noticia{
+    width: 45%;
+    margin-left: 150px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out
+    
+}
+.conte_noticia:hover .img_noticia {
+    transform: scale(1.2);
+  }
+
+.input_noticia{
+  margin-left: 150px;
+  width: 250px;
+  height: 35px;
+  padding-left: 10px;
+}
+.shadow-drop-center {
+	-webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/*animacion*/
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+  flex-wrap: wrap;
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+#susuwatari {
+  position: relative;
+}
+
+#star {
+  position: absolute;
+  transform: rotate(30deg);
+  z-index: 2;
+  left: 82px;
+  top: -213px;
+}
+
+.star-part {
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+#star-part1 {
+  border-right: 50px solid transparent;
+  border-bottom: 87px solid #F76378;
+  border-left: 50px solid transparent;
+}
+
+#star-part2 {
+  border-right: 50px solid transparent;
+  border-top: 87px solid #F76378;
+  border-left: 50px solid transparent;
+  top: 30px;
+}
+
+#body {
+  width: 200px;
+  border-radius: 200px;
+  height: 200px;
+  background-color: #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.hair {
+  width: 223px;
+  position: relative;
+  height: 4px;
+  background-color: #000000;
+}
+
+#hair-horizontal {
+  top: 100px;
+  right: 11px;
+}
+
+#hair-horizontal-15 {
+  transform: rotate(15deg);
+  top: 95px;
+  right: 12px;
+}
+
+#hair-horizontal-30 {
+  transform: rotate(30deg);
+  top: 90px;
+  right: 12px;
+}
+
+#hair-horizontal-45 {
+  transform: rotate(45deg);
+  top: 85px;
+  right: 13px;
+}
+
+#hair-horizontal-60 {
+  transform: rotate(60deg);
+  top: 82px;
+  right: 13px;
+}
+
+#hair-horizontal-75 {
+  transform: rotate(75deg);
+  top: 78px;
+  right: 13px;
+}
+
+#hair-vertical {
+  transform: rotate(90deg);
+  top: 74px;
+  right: 11px;
+}
+
+#hair-vertical-15 {
+  transform: rotate(-15deg);
+  top: 73px;
+  right: 12px;
+}
+
+#hair-vertical-30 {
+  transform: rotate(-30deg);
+  top: 70px;
+  right: 10px;
+}
+
+#hair-vertical-45 {
+  transform: rotate(-45deg);
+  top: 66px;
+  right: 9px;
+}
+
+#hair-vertical-60 {
+  transform: rotate(-60deg);
+  top: 60px;
+  right: 8px;
+}
+
+#hair-vertical-75 {
+  transform: rotate(-75deg);
+  top: 55px;
+  right: 8px;
+}
+
+.eye {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 55px;
+}
+
+#eye-left {
+  left: 30px;
+}
+
+#eye-right {
+  right: 30px;
+}
+
+.black-eye {
+  width: 20px;
+  height: 20px;
+  top: 7px;
+  left: 27px;
+  border-radius: 20px;
+  background-color: #000000;
+  position: relative;
+}
+
+#right-black-eye {
+  left: 15px;
+}
+
+#arms {
+  width: 220px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid #000000;
+  position: absolute;
+  bottom: 136px;
+  left: -19px;
+  z-index: 0;
+}
+
+#legs {
+  width: 160px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid #000000;
+  position: absolute;
+  top: 128px;
+  left: 19px;
+}
+
+#legs-bottom {
+  left: 11px;
+  top: 162px;
+  width: 140px;
+  height: 50px;
+  background-color: #885853;
+  position: relative;
+}
+
+#foot-left {
+  position: relative;
+  right: 13px;
+  top: 116px;
+}
+
+#foot-right {
+  position: relative;
+  left: 143px;
+  top: 110px;
+}
+
+.finger {
+  width: 30px;
+  height: 2px;
+  background-color: #000000;
+}
+
+#finger-left1 {
+  transform: rotate(-25deg);
+}
+
+#finger-left2 {
+  transform: rotate(-35deg);
+}
+
+#finger-left3 {
+  transform: rotate(-45deg);
+}
+
+#finger-right1 {
+  transform: rotate(25deg);
+}
+
+#finger-right2 {
+  transform: rotate(35deg);
+}
+
+#finger-right3 {
+  transform: rotate(45deg);
+}
+
+
+
+
+  
