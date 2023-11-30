@@ -1,4 +1,3 @@
-// ParqueLasPalapas.js
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
@@ -18,13 +17,15 @@ const ParqueLasPalapas = () => {
     { name: 'Parque de las Palapas', lat: 21.161261, lng: -86.827540, title: 'Parque de las Palapas' },
   ];
 
+  
+
   const onLoad = (map) => {
     setMap(map);
   };
 
   useEffect(() => {
     if (map) {
-      // Porsi deseas manipular el mapa después de cargar :)
+      
     }
   }, [map]);
 
@@ -34,7 +35,7 @@ const ParqueLasPalapas = () => {
     >
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={13}
+        zoom={14}
         center={locations[0]}
         onLoad={onLoad}
       >
