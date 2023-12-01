@@ -1,23 +1,17 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import '../App.css';
-import {Link} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
-=======
+
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import { Modal, Button } from 'react-bootstrap';
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import '/Users/gustavogutierrez/Desktop/appricaciones web/rafa/src/css/home.css';
+import { Link, useNavigate } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import '../css/home.css';
 
-<<<<<<< HEAD
-function Home() {                                  
-=======
+
 function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -41,7 +35,7 @@ function Home() {
   const handleLogout = async () => {
     try {
       await firebase.auth().signOut();
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
@@ -51,15 +45,14 @@ function Home() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
   return (
     <div className="text-center mb-4">
       <header className="home-header">
-        <div className="logo-section">
+        <div className="logo-section" style={{marginTop:20, marginLeft:10}}>
           <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" />
           <h1>Hora De Pasear</h1>
         </div>
-        <div className="user-section">
+        <div className="user-section" style={{marginTop:20}}>
           {user ? (
             <>
             <img
@@ -78,43 +71,19 @@ function Home() {
             </Button>
           )}
         </div>
-<<<<<<< HEAD
-        <Link to={'/login'}>
-        <button className="btn btn-success">
-          <FontAwesomeIcon icon={faUser} className="mr-2" />
-          Login
-        </button>
-        </Link>
-      </header>
-
-      <nav className="d-flex justify-content-around mb-4">
-        <Link to={'/'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
-        </Link>
-        <Link to={'#'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
-        </Link>
-        <Link to={'/lugares'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
-        </Link>
-        <Link to={'/informacion'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
-        </Link>
-=======
       </header>
 
       <nav className="home-nav">
         <Link to='/home'>Inicio</Link>
         <Link to='/clima'>Clima</Link>
         <Link to='/lugares'>Lugares</Link>
-        <Link to='/info'>Información</Link>
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
+        <Link to='/informacion'>Noticias</Link>
       </nav>
 
       <main>
         <section className="welcome-section">
-          <h2>¡Bienvenidos a "Hora de Pasear", tu compañero de viaje!</h2>
-          <img src="https://expertvagabond.com/wp-content/uploads/cancun-things-to-do-guide-900x600.jpg" alt="Imagen de Bienvenida" />
+          <h2 style={{marginTop:30, marginBottom:30}}>¡Bienvenidos a "Hora de Pasear", tu compañero de viaje!</h2>
+          <img src="https://expertvagabond.com/wp-content/uploads/cancun-things-to-do-guide-900x600.jpg" alt="Imagen de Bienvenida" style={{marginBottom:30}} />
         </section>
       </main>
 
@@ -140,22 +109,17 @@ function Home() {
           </div>
         </div>
       </footer>
-<<<<<<< HEAD
-=======
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Iniciar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Aquí iría el formulario de inicio de sesión si es necesario */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
           <Button variant="primary">Iniciar sesión</Button>
         </Modal.Footer>
       </Modal>
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
     </div>
   );
 }

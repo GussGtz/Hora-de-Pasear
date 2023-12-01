@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloud, faSignInAlt, faSignOutAlt, faTint, faWind } from '@fortawesome/free-solid-svg-icons';
+import { faCloud, faSignInAlt, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import '/Users/gustavogutierrez/Desktop/appricaciones web/rafa/src/css/home.css';
+import '../css/home.css';
 
 const WeatherInfo = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -27,23 +27,61 @@ const WeatherInfo = () => {
         setUser(null);
       }
     });
+
+
     return () => unsubscribe();
   }, []);
 
   const handleLogout = async () => {
     try {
       await firebase.auth().signOut();
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
   };
+ 
+ const handleLoginWithEmailAndPassword = async () => {
+    try {
+      const email = 'correo@example.com'; 
+      const password = 'contraseña';
+      const response = await fetch('http://localhost:8083/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setUser({
+          userId: data.user.userId,
+          email: data.user.email,
+          displayName: data.user.displayName || 'Usuario',
+        });
+
+        navigate('/home'); 
+      } else {
+        console.error('Error al iniciar sesión:', data.message);
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
+  };
+
+
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
       const url = `https://api.weatherapi.com/v1/current.json?key=c23c137cf41d4949a6945959232611&q=Cancun&aqi=no&lang=es`;
       try {
         const response = await fetch(url);
+        
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setWeatherData(data);
@@ -79,11 +117,11 @@ const WeatherInfo = () => {
   return (
     <div className="text-center mb-4">
       <header className="home-header">
-        <div className="logo-section">
+        <div className="logo-section" style={{marginTop:20, marginLeft:10}}>
           <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" />
           <h1>Hora De Pasear</h1>
         </div>
-        <div className="user-section">
+        <div className="user-section" style={{marginTop:20}}>
           {user ? (
             <>
               <img
@@ -108,7 +146,7 @@ const WeatherInfo = () => {
         <Link to='/home'>Inicio</Link>
         <Link to='/clima'>Clima</Link>
         <Link to='/lugares'>Lugares</Link>
-        <Link to='/info'>Información</Link>
+        <Link to='/informacion'>Noticias</Link>
       </nav>
 
       <main className="welcome-section">
@@ -135,7 +173,6 @@ const WeatherInfo = () => {
           <Modal.Title>Iniciar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Aquí iría el formulario de inicio de sesión si es necesario */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Cerrar</Button>

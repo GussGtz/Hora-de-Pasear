@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 
-// URL de la imagen de fondo que puedes cambiar según tus preferencias
+
 const backgroundUrl = 'https://media.nomadicmatt.com/2022/iscancunsafe.jpeg';
 
-// Agregar keyframes para la animación de deslizamiento
+
 const slideInAnimation = `
 @keyframes slideIn {
   from {
@@ -55,6 +55,8 @@ const styles = {
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleGoogleSignIn = () => {
@@ -67,6 +69,36 @@ const LoginForm = () => {
       .catch((error) => {
         setError(error.message); // Manejo de errores
       });
+  };
+
+  const responseFacebook = (response) => {
+    console.log(response);
+  };
+
+  const handleLoginFormSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:8083/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('userName', data.user.displayName); 
+        navigate('/MedicationChart');
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      setError('Error al iniciar sesión');
+    }
   };
 
   return (

@@ -1,4 +1,3 @@
-// Mirador.js
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
@@ -26,7 +25,7 @@ const ParqueLasPalapas = () => {
 
   useEffect(() => {
     if (map) {
-      // Porsi deseas manipular el mapa después de cargar :)
+      
     }
   }, [map]);
 

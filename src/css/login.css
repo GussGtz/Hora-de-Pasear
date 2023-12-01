@@ -1,5 +1,5 @@
 .fondoimg_login {
-	position: fixed; /* Utilizamos 'fixed' para que ocupe toda la pantalla sin importar el desplazamiento */
+	position: fixed; 
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -8,7 +8,7 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-color: rgba(0, 0, 0, 0.5); /* Ajusta el valor alpha para la opacidad */
+	background-color: rgba(0, 0, 0, 0.5); 
 }
 .main-content{
 	width: 50%;
@@ -52,7 +52,7 @@
 	border-top:1px solid #ccc;
 	border-right:1px solid #ccc;
 }
-form{
+.form-group{
 	padding: 0 2em;
 }
 .form__input{

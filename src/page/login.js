@@ -32,7 +32,6 @@ function Login(){
                       />
                     </div>
                     <div className="row">
-                      {/* <span class="fa fa-lock"></span> */}
                       <input
                         type="password"
                         name="password"

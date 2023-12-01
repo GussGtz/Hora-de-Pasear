@@ -16,14 +16,12 @@ footer {
 }
 
 
-/* Estilos.css */
 
-/* Logo y barra de navegación */
 .logo {
   margin-right: 20px;
 }
 
-/* Contenedor principal de la barra de navegación */
+
 header {
   background-color: white;
   padding: 15px;
@@ -31,20 +29,20 @@ header {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenedor principal de los elementos de la barra */
+
 .d-flex {
   justify-content: space-between;
   align-items: center;
 }
 
-/* Estilo para la barra de búsqueda y desplegable */
+
 input, select {
   border: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
 }
 
-/* Estilo para los botones */
+
 button {
   background-color: transparent;
   border: none;
@@ -57,7 +55,7 @@ button:hover {
   text-decoration: none;
 }
 
-/* Estilo para los botones de navegación en la parte inferior */
+
 nav button {
   margin: 0 10px;
 }
@@ -68,135 +66,131 @@ button i {
 }
 
 
-/* Estilos para la barra de navegación */
 
-/* Contenedor principal de la barra de navegación */
 header {
-  background-color: #f0f4f8;  /* Color de fondo suave */
+  background-color: #f0f4f8;  
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;  /* Espacio entre la barra y el contenido siguiente */
+  margin-bottom: 20px; 
 }
 
-/* Logo y nombre del sitio */
+
 .logo {
   margin-right: 20px;
-  color: #333;  /* Color oscuro para el texto */
+  color: #333; 
 }
 
-/* Estilo para los botones */
+ */
 button {
   background-color: transparent;
   border: none;
-  color: #2d9cdb;  /* Color azul para los botones */
+  color: #2d9cdb;  
   cursor: pointer;
-  margin: 0 10px;  /* Espacio entre botones */
+  margin: 0 10px;  
 }
 
 button:hover {
-  color: #1c6f9b;  /* Color azul oscuro al pasar el mouse */
+  color: #1c6f9b;  
 }
 
-/* Iconos de los botones */
+
 button i {
   margin-right: 5px;
 }
-/* Estilos para la barra de navegación */
 
-/* Contenedor principal de la barra de navegación */
 header {
-    background-color: #f0f4f8;  /* Color de fondo suave */
+    background-color: #f0f4f8;  
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;  /* Espacio entre la barra y el contenido siguiente */
+    margin-bottom: 20px;  
 }
 
-/* Logo y nombre del sitio */
+
 .logo {
     margin-right: 20px;
-    color: #333;  /* Color oscuro para el texto */
+    color: #333;
 }
 
-/* Estilo para los botones */
+
 button {
     background-color: transparent;
     border: none;
-    color: #2d9cdb;  /* Color azul para los botones */
+    color: #2d9cdb;  
     cursor: pointer;
-    margin: 0 10px;  /* Espacio entre botones */
+    margin: 0 10px; 
 }
 
 button:hover {
-    color: #1c6f9b;  /* Color azul oscuro al pasar el mouse */
+    color: #1c6f9b;  
 }
 
-/* Iconos de los botones */
+
 button i {
     margin-right: 5px;
 }
 
 
-/* Estilos para la barra de navegación */
 
-/* Contenedor principal de la barra de navegación */
+
+
 header {
-  background-color: #e8f9e5;  /* Color verde claro */
+  background-color: #e8f9e5; 
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;  /* Espacio entre la barra y el contenido siguiente */
+  margin-bottom: 20px;  
 }
 
-/* Logo y nombre del sitio */
+
 .logo {
   margin-right: 20px;
-  color: #333;  /* Color oscuro para el texto */
+  color: #333;  
 }
 
-/* Estilo para los botones */
+
 button {
   background-color: transparent;
   border: none;
-  color: #2d9cdb;  /* Color azul para los botones */
+  color: #2d9cdb;  
   cursor: pointer;
-  margin: 0 10px;  /* Espacio entre botones */
+  margin: 0 10px;  
 }
 
 button:hover {
-  color: #1c6f9b;  /* Color azul oscuro al pasar el mouse */
+  color: #1c6f9b;  
 }
 
-/* Iconos de los botones */
+
 button i {
   margin-right: 5px;
 }
 
 
-/* Estilos generales para los botones */
+
 button {
-  padding: 10px 20px; /* Espacio interior del botón */
-  margin: 0 5px;     /* Espacio entre botones */
+  padding: 10px 20px; 
+  margin: 0 5px;     
   border: none;
-  border-radius: 15px; /* Bordes redondeados */
-  background-color: #2d9cdb;  /* Color de fondo */
-  color: white;  /* Color del texto */
+  border-radius: 15px; 
+  background-color: #2d9cdb;  
+  color: white;  
   cursor: pointer;
-  font-size: 16px; /* Tamaño del texto */
-  transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+  font-size: 16px; 
+  transition: background-color 0.3s; 
 }
 
-/* Cambio de color al pasar el mouse por encima */
+ima */
 button:hover {
-  background-color: #1c6f9b; /* Color más oscuro */
+  background-color: #1c6f9b;
 }
 
-/* Estilo específico para el botón "CONTACT" */
+
 button.contact {
   background-color: white;
   color: #2d9cdb;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 button.contact:hover {
@@ -205,29 +199,29 @@ button.contact:hover {
 }
 
 
-/* Estilos generales para los botones */
+
 button {
-  padding: 10px 20px; /* Espacio interior del botón */
-  margin: 0 5px;     /* Espacio entre botones */
+  padding: 10px 20px; 
+  margin: 0 5px;     
   border: none;
-  border-radius: 50px; /* Esquinas completamente redondas */
-  background-color: #a8dbd1;  /* Color de fondo verde suave */
-  color: white;  /* Color del texto */
+  border-radius: 50px;
+  background-color: #a8dbd1;  
+  color: white;  
   cursor: pointer;
-  font-size: 16px; /* Tamaño del texto */
-  transition: background-color 0.3s; /* Transición suave al cambiar el color de fondo */
+  font-size: 16px; 
+  transition: background-color 0.3s; 
 }
 
-/* Cambio de color al pasar el mouse por encima */
+
 button:hover {
-  background-color: #198754; /* Color verde más oscuro para el hover */
+  background-color: #198754; 
 }
 
-/* Estilo específico para el botón destacado (similar a "CONTACT" pero adaptado a los colores de tu página) */
+
 button.destacado {
   background-color: white;
   color: #198754;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 button.destacado:hover {
@@ -235,7 +229,7 @@ button.destacado:hover {
   color: #198754;
 }
 
-/*cards*/
+
 .section-cards {
   z-index: 3;
   position: relative;
@@ -245,14 +239,14 @@ button.destacado:hover {
   background: #E5E5E5;
   padding: 60px 0 30px 0;
 }
-/* Estilos generales para el fondo y la tipografía */
+
 .container-fluid {
-  background-color: #f8f9fa; /* Cambiar por el color de fondo adecuado */
-  color: #333; /* Cambiar por el color de texto adecuado */
-  font-family: 'Arial', sans-serif; /* Cambiar por la tipografía adecuada */
+  background-color: #f8f9fa; 
+  color: #333; 
+  font-family: 'Arial', sans-serif; 
 }
 
-/* Cabecera */
+
 .header {
   justify-content: space-between;
   align-items: center;
@@ -260,33 +254,33 @@ button.destacado:hover {
 
 .logo {
   margin-right: 15px;
-  width: 50px; /* Ajustar según el diseño */
+  width: 50px; 
 }
 
-/* Navegación */
+
 .nav {
   justify-content: space-around;
   margin-bottom: 25px;
 }
 
 .btn-outline-success {
-  color: #28a745; /* Cambiar por el color del texto de los botones */
-  border-color: #28a745; /* Cambiar por el color del borde de los botones */
+  color: #28a745; 
+  border-color: #28a745; 
   background-color: transparent;
 }
 
 .btn-outline-success:hover {
-  background-color: #28a745; /* Cambiar por el color de fondo al pasar el mouse */
+  background-color: #28a745; 
   color: white;
 }
 
-/* Información del clima */
+
 .clima {
   text-align: center;
   margin-bottom: 25px;
 }
 
-/* Detalles del clima como iconos y texto */
+
 .clima-details {
   display: flex;
   justify-content: space-around;
@@ -295,13 +289,12 @@ button.destacado:hover {
 
 .btn-circle {
   border-radius: 50%;
-  width: 60px; /* Ajustar según el diseño */
-  height: 60px; /* Ajustar según el diseño */
+  width: 60px; 
+  height: 60px; 
 }
 
-/* Pie de página */
 .footer {
-  background-color: #28a745; /* Cambiar por el color de fondo adecuado */
+  background-color: #28a745; 
   color: white;
   padding: 15px;
   text-align: center;
@@ -352,8 +345,9 @@ button.destacado:hover {
 }
 
 .derecha {
-  margin-left: 500px; /* Ajusta este valor según tus necesidades */
+  margin-left: 500px; 
 }
+
 @keyframes slideIn {
   from {
     transform: translateY(-100%);
@@ -364,6 +358,7 @@ button.destacado:hover {
     opacity: 1;
   }
 }
+
 
 
 .weather-info {
