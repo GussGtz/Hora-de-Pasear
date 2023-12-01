@@ -1,26 +1,18 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import '../App.css';
-import {Link} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
-=======
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { Modal, Button } from 'react-bootstrap';
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faCloud, faSignInAlt, faSignOutAlt, faTint, faWind } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import '/Users/gustavogutierrez/Desktop/appricaciones web/rafa/src/css/home.css';
 
-<<<<<<< HEAD
-function Home() {                                  
-=======
-function Home() {
+const WeatherInfo = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [show, setShow] = useState(false);
+  const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -28,7 +20,7 @@ function Home() {
         setUser({
           userId: user.uid,
           email: user.email,
-          foto:user.photoURL,
+          foto: user.photoURL,
           displayName: user.displayName || 'Usuario',
         });
       } else {
@@ -47,11 +39,43 @@ function Home() {
     }
   };
 
-  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `https://api.weatherapi.com/v1/current.json?key=c23c137cf41d4949a6945959232611&q=Cancun&aqi=no&lang=es`;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (e) {
+        setError(e.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
+  const renderWeatherData = weatherData ? (
+    <div className="weather-details" style={{ fontSize: '32px' }}>
+      <FontAwesomeIcon icon={faCloud} size="5x" className="weather-icon" />
+      <span style={{ fontSize: '48px' }}>{weatherData.current.temp_c}°C</span>
+      <div className="weather-stats">
+       
+        <span style={{ fontSize: '24px' }}>Precipitación: {weatherData.current.precip_mm}mm</span>
+        
+        <span style={{ fontSize: '24px' }}>Viento: {weatherData.current.wind_kph}kph</span>
+        <span style={{ fontSize: '24px' }}>Humedad: {weatherData.current.humidity}%</span>
+      </div>
+      <div className="weather-date" style={{ fontSize: '24px' }}>{weatherData.current.last_updated}</div>
+      <div className="weather-condition" style={{ fontSize: '32px' }}>{weatherData.current.condition.text}</div>
+    </div>
+  ) : (
+    <p className="text-center">Cargando datos del clima...</p>
+  );
+
   return (
     <div className="text-center mb-4">
       <header className="home-header">
@@ -62,11 +86,11 @@ function Home() {
         <div className="user-section">
           {user ? (
             <>
-            <img
-            src={user.foto} // Mostrará la foto en miniatura del usuario
-            alt="Foto de perfil"
-            style={{ width: '30px', height: '30px', borderRadius: '50%', marginRight: '5px' }}
-          />
+              <img
+                src={user.foto} // Mostrará la foto en miniatura del usuario
+                alt="Foto de perfil"
+                style={{ width: '30px', height: '30px', borderRadius: '50%', marginRight: '5px' }}
+              />
               <span>{user.displayName}</span>
               <Button variant="outline-danger" onClick={handleLogout}>
                 <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
@@ -78,29 +102,6 @@ function Home() {
             </Button>
           )}
         </div>
-<<<<<<< HEAD
-        <Link to={'/login'}>
-        <button className="btn btn-success">
-          <FontAwesomeIcon icon={faUser} className="mr-2" />
-          Login
-        </button>
-        </Link>
-      </header>
-
-      <nav className="d-flex justify-content-around mb-4">
-        <Link to={'/'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
-        </Link>
-        <Link to={'#'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
-        </Link>
-        <Link to={'/lugares'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
-        </Link>
-        <Link to={'/informacion'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
-        </Link>
-=======
       </header>
 
       <nav className="home-nav">
@@ -108,29 +109,17 @@ function Home() {
         <Link to='/clima'>Clima</Link>
         <Link to='/lugares'>Lugares</Link>
         <Link to='/info'>Información</Link>
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
       </nav>
 
-      <main>
-        <section className="welcome-section">
-          <h2>¡Bienvenidos a "Hora de Pasear", tu compañero de viaje!</h2>
-          <img src="https://expertvagabond.com/wp-content/uploads/cancun-things-to-do-guide-900x600.jpg" alt="Imagen de Bienvenida" />
-        </section>
+      <main className="welcome-section">
+        <div className="weather-container">
+          {error ? <p className="text-center">Error al cargar los datos: {error}</p> : renderWeatherData}
+        </div>
+        <div className="spacer"></div>
       </main>
 
       <footer className="home-footer">
         <div className="footer-content">
-          <div className="social-media">
-            <a href="https://www.facebook.com/gustavo.gutierrez.94064176/" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faFacebook} size="2x" />
-            </a>
-            <a href="https://twitter.com/GustavoGtzzz" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faTwitter} size="2x" />
-            </a>
-            <a href="https://www.instagram.com/gtz_gustavo/" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faInstagram} size="2x" />
-            </a>
-          </div>
           <div className="footer-links">
             <Link to='/terminos'>Términos de Servicio</Link>
             <Link to='/privacidad'>Política de Privacidad</Link>
@@ -140,8 +129,6 @@ function Home() {
           </div>
         </div>
       </footer>
-<<<<<<< HEAD
-=======
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -155,9 +142,8 @@ function Home() {
           <Button variant="primary">Iniciar sesión</Button>
         </Modal.Footer>
       </Modal>
->>>>>>> c9e51cac8f816c4b84a383cd938d75fd405db87a
     </div>
   );
-}
+};
 
-export default Home;
+export default WeatherInfo;
