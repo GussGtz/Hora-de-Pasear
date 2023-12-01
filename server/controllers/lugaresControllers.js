@@ -8,7 +8,7 @@ const obtenerLugares = (req, res) => {
                 error: "Error al obtener lugares",
             });
         } else{
-            res.json(results);
+            res.json({listaLugares: results});
         }
     })
 }
@@ -45,7 +45,7 @@ const eliminarLugar = (req, res) => {
 
     conecction.query('DELETE FROM lugares WHERE id_lugares= ?', [id], (error, results) => {
         if(error){
-            console.error("Error al actualizar el lugar", error);
+            console.error("Error al eliminar el lugar", error);
             res.status(500).json({error:"Ocurrio un error al eliminar lugar"});
         }else{
             res.json({message:"El lugar fue eliminada correctamente"});

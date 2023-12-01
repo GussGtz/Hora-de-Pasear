@@ -169,7 +169,7 @@ const Informacion = () => {
         <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
         </Link>
         <Link to={'/informacion'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
+        <button class="destacado" className="btn btn-outline-success mx-2">Noticias</button>
         </Link>
       </nav>
             

@@ -13,7 +13,7 @@ import { Modal, Button } from 'react-bootstrap';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 
 
@@ -22,6 +22,8 @@ function Lugares() {
  // usuario
  const navigate = useNavigate();
  const [user, setUser] = useState(null);
+
+ 
 
  useEffect(() => {
    // Escucha los cambios en la autenticación de Firebase
@@ -99,12 +101,20 @@ const handleLoginWithEmailAndPassword = async () => {
 
 
   const [showModal, setShowModal] = useState(false);
+  const [lugares, setLugares] = useState([]);
 
   const handleOpenModal = () => {
     setShowModal(true);
   };
 
-
+//PETICION DE LA API DE LUGARES EN LA BASE DE DATOS
+useEffect(() => {
+  axios.get('http://localhost:3001/lugares')
+  .then(respuesta =>{
+    setLugares(respuesta.data.listaLugares);
+  })
+  .catch(error => console.error(error));
+}, [])
 
   return (
     <>
@@ -147,7 +157,7 @@ const handleLoginWithEmailAndPassword = async () => {
         <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
         </Link>
         <Link to={'/informacion'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Información</button>
+        <button class="destacado" className="btn btn-outline-success mx-2">Noticias</button>
         </Link>
         </nav>
 
@@ -326,6 +336,36 @@ const handleLoginWithEmailAndPassword = async () => {
     </button>
   </div>
 </div>
+
+{/* MAPEO DE LA API*/}
+
+{lugares.map((lugar) => {
+  return(
+    <div className="col-xs-12 col-sm-4">
+  <div
+    className="card"
+    style={{
+      background:
+        `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(${lugar.imagen})`
+    }}
+  >
+    <div className="card-description">
+      <h2>{lugar.lugares}</h2>
+    </div>
+    <button
+      type="button"
+      class="btn btn-light"
+      style={{ marginTop: '10px', boxShadow: '-moz-initial' }}
+      data-bs-toggle="modal"
+      data-bs-target="#PlazaLaIslaModal"
+      onClick={handleOpenModal}
+    >
+      ubicacion
+    </button>
+  </div>
+</div>
+  )
+})}
 
 
 
@@ -522,6 +562,7 @@ Esta plaza comercial deslumbra a los visitantes por su estilo arquitectónico de
     </div>
   </div>
 </div>
+
 
 
 
