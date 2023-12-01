@@ -1,42 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import {Button} from 'react-bootstrap';
-import '../css/noticias.css'
-import '../App.css'; 
+import { Link, useNavigate } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSignInAlt, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { useNavigate } from 'react-router-dom';
-
-
-
+import '../css/home.css';
+import '../css/noticias.css'
 
 const Informacion = () => {
-
-  //noticia
-  const [articles, setArticles] = useState([]);
-  const apiKey = '870bd45533764712b6c6a146e03497f2';
- 
-  // usuario
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10; 
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const [searchDate, setSearchDate] = useState("");
 
+   //noticia
+   const [articles, setArticles] = useState([]);
+   const apiKey = '870bd45533764712b6c6a146e03497f2';
   
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        // Usuario autenticado
-        
         setUser({
           userId: user.uid,
           email: user.email,
+          foto: user.photoURL,
           displayName: user.displayName || 'Usuario',
         });
       } else {
-        // No hay usuario autenticado
         setUser(null);
       }
     });
+
 
     return () => unsubscribe();
   }, []);
@@ -44,21 +45,16 @@ const Informacion = () => {
   const handleLogout = async () => {
     try {
       await firebase.auth().signOut();
-      // Cerrar sesión exitosamente, redirigir al componente de inicio de sesión
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
     }
   };
  
- 
- 
  const handleLoginWithEmailAndPassword = async () => {
     try {
-      const email = 'correo@example.com'; // Reemplaza con el correo proporcionado por el usuario
-      const password = 'contraseña'; // Reemplaza con la contraseña proporcionada por el usuario
-
-      // Llama a tu servidor para iniciar sesión y obtener la información del usuario
+      const email = 'correo@example.com'; 
+      const password = 'contraseña';
       const response = await fetch('http://localhost:8083/login', {
         method: 'POST',
         headers: {
@@ -76,7 +72,7 @@ const Informacion = () => {
           displayName: data.user.displayName || 'Usuario',
         });
 
-        navigate('/home'); // Puedes redirigir a la página principal o donde desees
+        navigate('/home'); 
       } else {
         console.error('Error al iniciar sesión:', data.message);
       }
@@ -85,15 +81,8 @@ const Informacion = () => {
     }
   };
 
-
-
-  const [show, setShow] = useState(false);
-  const [weatherData, setWeatherData] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10; // Puedes ajustar este número según tus preferencias
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const [searchDate, setSearchDate] = useState("");
+ 
+  
 
   const handleDateChange = (event) => {
     setSearchDate(event.target.value);
@@ -105,76 +94,71 @@ const Informacion = () => {
   });
   
 
-  //noticia
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://newsapi.org/v2/everything?q=Cancún&apiKey=${apiKey}&language=es`
-        );
+//noticia
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `https://newsapi.org/v2/everything?q=Cancún&apiKey=${apiKey}&language=es`
+      );
 
-        if (!response.ok) {
-          throw new Error('Error al obtener noticias');
-        }
-
-        const data = await response.json();
-        setArticles(data.articles);
-      } catch (error) {
-        console.error('Error al obtener noticias', error);
+      if (!response.ok) {
+        throw new Error('Error al obtener noticias');
       }
-    };
 
-    fetchData();
-  }, [apiKey]);
+      const data = await response.json();
+      setArticles(data.articles);
+    } catch (error) {
+      console.error('Error al obtener noticias', error);
+    }
+  };
 
-  if (articles.length === 0) {
-    return <div>Cargando noticias sobre Cancún...</div>;
-  }
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  fetchData();
+}, [apiKey]);
+
+if (articles.length === 0) {
+  return <div>Cargando noticias sobre Cancún...</div>;
+}
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
 
   return (
-    <div className="weather-container">
-      <header className="weather-header">
-        <div className="logo-container">
-          <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo"/>
+    <div className="text-center mb-4">
+      <header className="home-header">
+        <div className="logo-section" style={{marginTop:20, marginLeft:10}}>
+          <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" />
           <h1>Hora De Pasear</h1>
-        <div className="derecha">
-            {user && (
-                <>
-                    <span>{user.displayName}</span>
-                    <Button variant="outline-danger" onClick={handleLogout}>
-                        Cerrar Sesión
-                    </Button>
-                </>
-            )}
-            {!user && (
-                <Button variant="outline-danger" onClick={handleLogout}>
-                    Cerrar Sesión
-                </Button>
-            )}
         </div>
+        <div className="user-section" style={{marginTop:20}}>
+          {user ? (
+            <>
+              <img
+                src={user.foto}
+                alt="Foto de perfil"
+                style={{ width: '30px', height: '30px', borderRadius: '50%', marginRight: '5px' }}
+              />
+              <span>{user.displayName}</span>
+              <Button variant="outline-danger" onClick={handleLogout}>
+                <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
+              </Button>
+            </>
+          ) : (
+            <Button variant="outline-primary" onClick={handleShow}>
+              <FontAwesomeIcon icon={faSignInAlt} /> Iniciar Sesión
+            </Button>
+          )}
         </div>
       </header>
-      <nav className="weather-nav">
-      <Link to={'/home'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
-        </Link>
 
-        <Link to={'/clima'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
-        </Link>
-        
-        <Link to={'/lugares'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
-        </Link>
-        <Link to={'/informacion'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Noticias</button>
-        </Link>
+      <nav className="home-nav">
+        <Link to='/home'>Inicio</Link>
+        <Link to='/clima'>Clima</Link>
+        <Link to='/lugares'>Lugares</Link>
+        <Link to='/informacion'>Noticias</Link>
       </nav>
-            
-      {/* parte de noticias */}
-      <div className='noticias'>
+
+            {/* parte de noticias */}
+            <div className='noticias'>
         <h1 className="display-4 font-weight-bolder" style={{textAlign:'center', marginTop:30, marginBottom:30}}>Noticias</h1>
         <input
       type="text"
@@ -182,52 +166,12 @@ const Informacion = () => {
       className='input_noticia shadow-drop-center'
       value={searchDate}
       onChange={handleDateChange}
+      style={{marginLeft:0}}
     />
     {filteredArticles.length === 0 && searchDate && (
       <>
       <p style={{textAlign:'center', fontSize:'30px'}}>No hay noticias para la fecha seleccionada.</p>
-      <div id="container">
-  <div id="susuwatari">
-    <div id="star">
-      <div className="star-part" id="star-part1" />
-      <div className="star-part" id="star-part2" />
-    </div>
-    <div id="body">
-      <div className="hair" id="hair-horizontal" />
-      <div className="hair" id="hair-horizontal-15" />
-      <div className="hair" id="hair-horizontal-30" />
-      <div className="hair" id="hair-horizontal-45" />
-      <div className="hair" id="hair-horizontal-60" />
-      <div className="hair" id="hair-horizontal-75" />
-      <div className="hair" id="hair-vertical" />
-      <div className="hair" id="hair-vertical-15" />
-      <div className="hair" id="hair-vertical-30" />
-      <div className="hair" id="hair-vertical-45" />
-      <div className="hair" id="hair-vertical-60" />
-      <div className="hair" id="hair-vertical-75" />
-      <div className="eye" id="eye-left">
-        <div className="black-eye" id="left-black-eye" />
-      </div>
-      <div className="eye" id="eye-right">
-        <div className="black-eye" id="right-black-eye" />
-      </div>
-    </div>
-    <div id="arms"></div>
-    <div id="legs">
-      <div id="legs-bottom" />
-      <div id="foot-left">
-        <div className="finger" id="finger-left1" />
-        <div className="finger" id="finger-left2" />
-        <div className="finger" id="finger-left3" />
-      </div>
-      <div id="foot-right">
-        <div className="finger" id="finger-right1" />
-        <div className="finger" id="finger-right2" />
-        <div className="finger" id="finger-right3" />
-      </div>
-    </div>
-  </div>
-</div>
+      <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" style={{width:'30%', height: '40%', marginBottom:30}}/>
 </>
     )}
       {filteredArticles.slice(startIndex, endIndex).map((article, index) => (
@@ -238,7 +182,7 @@ const Informacion = () => {
         <div>
         <p style={{marginLeft:30, marginTop:30, fontSize:20}}>{article.description}</p>
         <div style={{backgroundColor: '#0080809b', height:30, paddingTop:2, borderRadius:5, marginLeft: 30, width:100, marginBottom:30}}>
-        <Link to={article.url} style={{marginLeft:20, color:'black', textDecoration:'none'}}>ver más</Link>
+        <Link to={article.url} style={{marginLeft:0, color:'black', textDecoration:'none'}}>ver más</Link>
         </div>
         </div>
         <div className='conte_noticia'>
@@ -249,7 +193,7 @@ const Informacion = () => {
       ))}
       
       </div>
-      <div style={{textAlign: 'center'}}>
+      <div style={{textAlign: 'center', marginBottom:30}}>
   <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} style={{color:'black'}}>
     Anterior
   </button>
@@ -263,15 +207,30 @@ const Informacion = () => {
   </button>
 </div>
       
-
-      
-
-      
-
-      <footer className="weather-footer">
-        <img className="footer-logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo"/>
-        <p>© Hora De Pasear</p>
+      <footer className="home-footer">
+        <div className="footer-content">
+          <div className="footer-links">
+            <Link to='/terminos'>Términos de Servicio</Link>
+            <Link to='/privacidad'>Política de Privacidad</Link>
+          </div>
+          <div className="copy-right">
+            <p>© 2023 Hora De Pasear. Todos los derechos reservados.</p>
+          </div>
+        </div>
       </footer>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Iniciar sesión</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Aquí iría el formulario de inicio de sesión si es necesario */}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
+          <Button variant="primary">Iniciar sesión</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

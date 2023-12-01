@@ -1,4 +1,3 @@
-// CancunCenter.js
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 

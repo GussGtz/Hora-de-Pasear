@@ -1,104 +1,83 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useNavigate } from "react-router-dom";
+import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {Link} from "react-router-dom"
+import {faSignInAlt, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import '../css/home.css';
 import ParqueLasPalapas from '../ApiUbicaciones/ParqueLasPalapas';
 import PlazaLasAmericas from '../ApiUbicaciones/PlazaLasAmericas';
 import ElMirador from '../ApiUbicaciones/Mirador'
 import TorreExcaret from '../ApiUbicaciones/TorreExcaret'
 import CancunCenter from '../ApiUbicaciones/CancunCenter'
 import PlazaLaIsla from '../ApiUbicaciones/PlazalaIsla'
-import { Modal, Button } from 'react-bootstrap';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const Lugares = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [show, setShow] = useState(false);
 
 
-function Lugares() {
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUser({
+          userId: user.uid,
+          email: user.email,
+          foto: user.photoURL,
+          displayName: user.displayName || 'Usuario',
+        });
+      } else {
+        setUser(null);
+      }
+    });
 
- // usuario
- const navigate = useNavigate();
- const [user, setUser] = useState(null);
 
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  };
  
+ const handleLoginWithEmailAndPassword = async () => {
+    try {
+      const email = 'correo@example.com'; 
+      const password = 'contraseña';
+      const response = await fetch('http://localhost:8083/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
- useEffect(() => {
-   // Escucha los cambios en la autenticación de Firebase
-   const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-     if (user) {
-       // Usuario autenticado
-       
-       setUser({
-         userId: user.uid,
-         email: user.email,
-         displayName: user.displayName || 'Usuario',
-       });
-     } else {
-       // No hay usuario autenticado
-       setUser(null);
-     }
-   });
+      const data = await response.json();
 
-   // Limpia el efecto cuando el componente se desmonta
-   return () => unsubscribe();
- }, []);
+      if (data.success) {
+        setUser({
+          userId: data.user.userId,
+          email: data.user.email,
+          displayName: data.user.displayName || 'Usuario',
+        });
 
- const handleLogout = async () => {
-   try {
-     await firebase.auth().signOut();
-     // Cerrar sesión exitosamente, redirigir al componente de inicio de sesión
-     navigate('/login');
-   } catch (error) {
-     console.error('Error al cerrar sesión:', error);
-   }
- };
+        navigate('/home'); 
+      } else {
+        console.error('Error al iniciar sesión:', data.message);
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
+  };
 
-
-
-const handleLoginWithEmailAndPassword = async () => {
-   // Aquí puedes manejar el inicio de sesión con correo y contraseña,
-   // y obtener el nombre del usuario de tu servidor
-   try {
-     const email = 'correo@example.com'; // Reemplaza con el correo proporcionado por el usuario
-     const password = 'contraseña'; // Reemplaza con la contraseña proporcionada por el usuario
-
-     // Llama a tu servidor para iniciar sesión y obtener la información del usuario
-     const response = await fetch('http://localhost:8083/login', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json',
-       },
-       body: JSON.stringify({ email, password }),
-     });
-
-     const data = await response.json();
-
-     if (data.success) {
-       // Inicio de sesión exitoso, obtener información del usuario
-       setUser({
-         userId: data.user.userId,
-         email: data.user.email,
-         displayName: data.user.displayName || 'Usuario',
-       });
-
-       navigate('/'); // Puedes redirigir a la página principal o donde desees
-     } else {
-       console.error('Error al iniciar sesión:', data.message);
-     }
-   } catch (error) {
-     console.error('Error al iniciar sesión:', error);
-   }
- };
-
-
- // fin seccion usuario
-
-
-
-
+  
 
   const [showModal, setShowModal] = useState(false);
   const [lugares, setLugares] = useState([]);
@@ -116,57 +95,51 @@ useEffect(() => {
   .catch(error => console.error(error));
 }, [])
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  
+
   return (
-    <>
-      <div className="container-fluid bg-light p-3 p-md-5 rounded">
-        <header className="d-flex justify-content-between align-items-center mb-4">
-          <div className="d-flex align-items-center">
-            <img className="logo mr-3" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" width="50" />
-            <h1 className="font-weight-bold">Hora De Pasear</h1>
-         
-            <div className="derecha">
-            {user && (
-                <>
-                    <span>{user.displayName}</span>
-                    <Button variant="outline-danger" onClick={handleLogout}>
-                        Cerrar Sesión
-                    </Button>
-                </>
-            )}
-            {!user && (
-                <Button variant="outline-danger" onClick={handleLogout}>
-                    Cerrar Sesión
-                </Button>
-            )}
+    <div className="text-center mb-4">
+      <header className="home-header">
+        <div className="logo-section" style={{marginTop:20, marginLeft:10}}>
+          <img className="logo" src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" />
+          <h1>Hora De Pasear</h1>
         </div>
-         
-          </div>
-         
-        </header>
+        <div className="user-section" style={{marginTop:20}}>
+          {user ? (
+            <>
+              <img
+                src={user.foto} // Mostrará la foto en miniatura del usuario
+                alt="Foto de perfil"
+                style={{ width: '30px', height: '30px', borderRadius: '50%', marginRight: '5px' }}
+              />
+              <span>{user.displayName}</span>
+              <Button variant="outline-danger" onClick={handleLogout}>
+                <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar Sesión
+              </Button>
+            </>
+          ) : (
+            <Button variant="outline-primary" onClick={handleShow}>
+              <FontAwesomeIcon icon={faSignInAlt} /> Iniciar Sesión
+            </Button>
+          )}
+        </div>
+      </header>
 
-        <nav className="d-flex justify-content-around mb-4">
-        <Link to={'/home'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Inicio</button>
-        </Link>
+      <nav className="home-nav">
+        <Link to='/home'>Inicio</Link>
+        <Link to='/clima'>Clima</Link>
+        <Link to='/lugares'>Lugares</Link>
+        <Link to='/informacion'>Noticias</Link>
+      </nav>
 
-        <Link to={'/clima'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Clima</button>
-        </Link>
-        
-        <Link to={'/lugares'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Lugares</button>
-        </Link>
-        <Link to={'/informacion'}>
-        <button class="destacado" className="btn btn-outline-success mx-2">Noticias</button>
-        </Link>
-        </nav>
-
-
-        <section className="wrapper-grey padded">
+      <section className="wrapper-grey padded" style={{marginBottom:30}}>
           <div className="container">
             <div className="row">
               <div className="col text-center mb-5">
-                <h1 className="display-4 font-weight-bolder">Lugares</h1>
+                <h1 className="display-4 font-weight-bolder" style={{marginTop:30}}>Lugares</h1>
               </div>
             </div>
 
@@ -196,7 +169,7 @@ useEffect(() => {
                 </div>
               </div>
 
-             
+
 {/* PLAZA LAS AMERICAS */}
 
 <div className="col-xs-12 col-sm-4">
@@ -249,10 +222,6 @@ useEffect(() => {
     </button>
   </div>
 </div>
-
-
-
-
 
 
 {/* TORRE EXCARET */}
@@ -367,15 +336,12 @@ useEffect(() => {
   )
 })}
 
-
-
-
             </div>
           </div>
         </section>
 
 
-               {/* INFORMACION DE LOS MODAL */}
+{/* INFORMACION DE LOS MODAL */}
 
 
   {/* PARQUE LAS PALAPAS */}
@@ -563,19 +529,31 @@ Esta plaza comercial deslumbra a los visitantes por su estilo arquitectónico de
   </div>
 </div>
 
+      <footer className="home-footer">
+        <div className="footer-content">
+          <div className="footer-links">
+            <Link to='/terminos'>Términos de Servicio</Link>
+            <Link to='/privacidad'>Política de Privacidad</Link>
+          </div>
+          <div className="copy-right">
+            <p>© 2023 Hora De Pasear. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
 
-
-
-
-
-
-        <footer className="text-center bg-success text-white p-3">
-          <img src="https://cdn-icons-png.flaticon.com/512/2045/2045891.png" alt="Logo" width="50" />
-          <p className="mt-2 mb-0">© Hora De Pasear</p>
-        </footer>
-      </div>
-    </>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Iniciar sesión</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
+          <Button variant="primary">Iniciar sesión</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
-}
+};
 
 export default Lugares;
